@@ -11,11 +11,21 @@ import { ShoppingCart } from '../models/shopping-cart';
 export class ProductCardComponent  {
   @Input('product') product: Product;
   @Input('shopping-cart') shoppingCart: ShoppingCart;
+  inStock:boolean;
 
-  constructor(private cartService: ShoppingCartService) { }
+  constructor(private cartService: ShoppingCartService) {
+    //console.log('stock:'+this.product.stock);
+    // if(this.shoppingCart.getQuantity(this.product)<this.product.stock){
+    //   this.inStock=true;
+    // }
+   }
 
   addToCart(){
-    this.cartService.addToCart(this.product);
+    if(this.shoppingCart.getQuantity(this.product)<this.product.stock)
+      this.cartService.addToCart(this.product);
+    else{
+      this.inStock=false;
+    }
   }
 
 }

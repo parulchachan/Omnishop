@@ -19,7 +19,8 @@ export class CheckOutComponent implements OnInit, OnDestroy{
     name:"",
     addressLine1:"",
     addressLine2: "",
-    city: ""
+    city: "",
+    mobile:null
   };
   cart: ShoppingCart; 
   cartSubscription: Subscription;

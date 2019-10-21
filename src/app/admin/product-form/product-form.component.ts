@@ -21,7 +21,7 @@ export class ProductFormComponent {
     seller: "",
     description: "",
     key: "",
-
+    stock:null
   };
   id;
   image;

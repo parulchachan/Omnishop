@@ -1,3 +1,4 @@
+import { ProductService } from './product.service';
 import { ShoppingCartService } from './shopping-cart.service';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
@@ -5,10 +6,11 @@ import { Order } from './models/order';
 
 @Injectable({
   providedIn: 'root'
-})
+}) 
 export class OrderService {
 
-  constructor(private db: AngularFireDatabase,private shoppingCartService: ShoppingCartService) {
+  constructor(private db: AngularFireDatabase,private shoppingCartService: ShoppingCartService,
+     private productService :ProductService) {
   }
 
   getOrder(){
@@ -26,7 +28,13 @@ export class OrderService {
     return result;
   }
 
-  async placeOrder(order){
+  async placeOrder(order: Order){
+    let item;
+    for(item in order.items){
+      let prev =await this.productService.getStock(order.items[item].product.id);
+      let newStock=prev-order.items[item].quantity
+      this.productService.updateStock(order.items[item].product.id,newStock);
+    }
     let result= await this.db.list('/orders').push(order);
     this.shoppingCartService.clearCart();
     return result;

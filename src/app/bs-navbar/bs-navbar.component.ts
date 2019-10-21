@@ -20,6 +20,10 @@ export class BsNavbarComponent implements OnInit{
     location.reload();
   }
 
+  toggle(){
+    $(".navbar-toggler").click();
+  }
+
   async ngOnInit(){
     this.auth.appUser$.subscribe(appUser=> this.appUser= appUser )
     let cart$= await  this.shoppingCartService.getCart() 

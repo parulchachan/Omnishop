@@ -28,7 +28,7 @@
         <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef>Action</th>
                 <td mat-cell *matCellDef="let element">
-                    <a [routerLink]="['/admin/products/']">
+                    <a [routerLink]="['/admin/products/',element.key]">
                         <span style="color: blue;">
                             <i class="material-icons">edit</i>
                         </span>

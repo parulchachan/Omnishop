@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/shopping-cart">
+          <a class="nav-link" routerLink="/shopping-cart" (click)=toggle()>
             Shopping Cart
             <span class="badge badge-warning badge-pill">
               {{shoppingCartItemCount }}
@@ -37,12 +37,12 @@
                 {{appUser.name}}  
             </a>
             <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown03">
-              <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
+              <a class="dropdown-item" routerLink="/my/orders" (click)=toggle()>My Orders</a>
               <ng-container *ngIf="appUser.isAdmin">
-                <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
-              <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
+                <a class="dropdown-item" routerLink="/admin/orders" (click)=toggle()>Manage Orders</a>
+              <a class="dropdown-item" routerLink="/admin/products" (click)=toggle()>Manage Products</a>
               </ng-container>
-              <a class="dropdown-item" (click)="logout()">Log Out</a>
+              <a class="dropdown-item" (click)="logout()" (click)=toggle()>Log Out</a>
             </div>
         </li>
       </ul>

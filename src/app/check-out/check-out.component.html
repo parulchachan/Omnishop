@@ -2,32 +2,84 @@
 <h2>Shipping</h2>
 
 <div class="row">
+    
+    
   <div class="col-md-6 col-xs-12">
-    <form #f="ngForm">
+    <form #f="ngForm" >
           <div class="form-group">
             <label for="">Name</label>
-            <input #name="ngModel" name="name" [(ngModel)]="shipping.name" type="text" class="form-control" required>
+            <input 
+              #name="ngModel" 
+              name="name" 
+              [(ngModel)]="shipping.name" 
+              type="text" 
+              class="form-control" 
+              required>
             <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
               <div *ngIf="name.errors.required">Name is required.</div>
             </div>
           </div>
+          
           <div class="form-group">
-            <label for="">Address</label>
-            <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping.addressLine1" type="text" class="form-control" placeholder="Line 1" required>
-            <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
-              <div *ngIf="addressLine1.errors.required">Address Line 1 is required.</div>
-            </div>
-          </div>
+              <label for="">Mobile No.</label>
+              <input 
+                #mobile="ngModel"
+                name="mobile" 
+                [(ngModel)]="shipping.mobile" 
+                type="number"    
+                class="form-control"
+                ngModel
+                minlength="10" 
+                maxlength="10"
+                required>
+              <div class="alert alert-danger" *ngIf="mobile.touched && mobile.invalid">
+                <div *ngIf="mobile.errors.required">Mobile no. is required.</div>
+                <div *ngIf="mobile.errors.minlength">Mobile no. should have minimun 10 number.</div>
+                <div *ngIf="mobile.errors.maxlength">Mobile no. should have maximun 10 number.</div>
+              </div>
+            </div>  
+            <div class="form-group">
+                <label for="">Address</label>
+
+                <input 
+                  #addressLine1="ngModel" 
+                  name="addressLine1" 
+                  [(ngModel)]="shipping.addressLine1" 
+                  type="text" 
+                  class="form-control" 
+                  placeholder="Line 1" 
+                  required>
+                <div 
+                  class="alert alert-danger" 
+                  *ngIf="addressLine1.touched && addressLine1.invalid">
+                  <div 
+                    *ngIf="addressLine1.errors.required">Address Line 1 is required.</div>
+                </div>
+              </div>
           <div class="form-group">
             <label for=""></label>
-            <input #addressLine2="ngModel" name="addressLine2" [(ngModel)]="shipping.addressLine2" type="text" class="form-control" placeholder="Line 2" required>
+            <input 
+              #addressLine2="ngModel" 
+              name="addressLine2" 
+              [(ngModel)]="shipping.addressLine2" 
+              type="text" 
+              class="form-control" 
+              placeholder="Line 2" 
+              required>
             <div class="alert alert-danger" *ngIf="addressLine2.touched && addressLine2.invalid">
               <div *ngIf="addressLine2.errors.required">Address Line 2 is required.</div>
             </div>
           </div>
+          
           <div class="form-group">
             <label for="">City</label>
-            <input #city="ngModel" name="city" [(ngModel)]="shipping.city" type="text" class="form-control" required>
+            <input 
+              #city="ngModel"
+              name="city" 
+              [(ngModel)]="shipping.city" 
+              type="text" 
+              class="form-control" 
+              required>
             <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
               <div *ngIf="city.errors.required">City is required.</div>
             </div>
@@ -38,9 +90,10 @@
             class="btn btn-primary col-md-12">Place Order</button>
         </form>
   </div>
-  <br>
   <div class="col-md-6 col-xs-12">
-    <shopping-cart-summary [cart]="cart"></shopping-cart-summary>
+      <shopping-cart-summary [cart]="cart"></shopping-cart-summary>
   </div>
+
+ 
   <br><br>
 </div>

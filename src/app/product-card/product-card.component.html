@@ -1,27 +1,49 @@
-<div class="card">
+<div class="card" style=" box-shadow: 0 10px 20px rgba(0,0,0,0.10), 0 6px 6px rgba(0,0,0,0.10);">
     <div style="height:15rem;" class="img-thumbnail">
         <div style="vertical-align: middle">
-            <img 
+            <img  
             [src]="product.imageUrl" 
             class="img-fluid img-responsive d-block mx-auto"
-            style=" max-height:14rem; ;"
+            style=" max-height:14rem;"
+            data-bind="style: { }"
             [routerLink]="['/products/',product.key]">
         </div>
 
     </div>
     <div class="card-body">
-        <h6 class="card-title" style="min-height:45px; max-height: 45px ">{{product.title}}</h6>
-        <p class="card-text" style="max-height: 10px">{{product.price | currency:"₹":"symbol"}}</p>
+        <h6 
+            class="card-title" 
+            [class.text-muted] = "product.stock ==0? true : false"
+            style="min-height:45px; max-height: 45px "> {{product.title}} </h6>
+        <p 
+            class="card-text" 
+            style="max-height: 10px"
+            [class.text-muted]="product.stock ==0? true : false"
+            >{{product.price | currency:"₹":"symbol"}}</p>
     </div>
 
     <div *ngIf="shoppingCart" class="card-footer">
-        <button
-            *ngIf="shoppingCart.getQuantity(product) === 0;else updateQuantity"
-            (click)="addToCart()"  
-            class="btn btn-secondary btn-block">Add to Cart
-        </button>
-        <ng-template #updateQuantity>
-            <product-quantity [product]="product" [shopping-cart]="shoppingCart"></product-quantity>
-        </ng-template>  
+        <div>
+            <div *ngIf="product.stock > 0;else show" >
+                <button
+                    *ngIf="shoppingCart.getQuantity(product) === 0;else updateQuantity"
+                    [class.disabled]="shoppingCart.getQuantity(product) < product.stock ? false : true"
+                    (click)="addToCart()"  
+                    class="btn btn-secondary btn-block">Add to Cart
+                </button>
+                <ng-template #updateQuantity>
+                    <product-quantity [product]="product" [shopping-cart]="shoppingCart"></product-quantity>
+                </ng-template>  
+            </div>
+            <ng-template #show>
+                <button
+                    *ngIf="shoppingCart.getQuantity(product) === 0"
+                    (click)="addToCart()"  
+                    class="btn btn-secondary btn-block disabled">Out of stock!
+                </button>
+            </ng-template>
+        </div>
+
+       
     </div>
 </div>

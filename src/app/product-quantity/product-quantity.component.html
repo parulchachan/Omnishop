@@ -7,11 +7,12 @@
             </button>
         </div>
         <div class="col text-center col-8" style="vertical-align:middle; line-height:38px ">
-            {{ shoppingCart.getQuantity(product) }} in cart
+            {{ shoppingCart.getQuantity(product)}} in cart
         </div>
         <div class="col-2">
             <button 
                 class="btn btn-secondary btn-block"
+                [class.disabled]="shoppingCart.getQuantity(product) < product.stock ? false : true"
                 (click)="addToCart()"
                 >+
             </button>

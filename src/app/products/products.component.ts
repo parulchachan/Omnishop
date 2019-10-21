@@ -14,8 +14,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class ProductsComponent implements OnInit,OnDestroy {
   
-  products: any[]=[];
-  filteredProducts: any[]=[];
+  products=[];
+  filteredProducts=[];
   category;
   cart;
   Subscription;

@@ -7,4 +7,5 @@
         seller: string;
         description: string;
         key: string;
+        stock:number;
     }

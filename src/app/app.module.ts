@@ -28,7 +28,6 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
-import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
@@ -117,7 +116,7 @@ const appRoutes: Routes = [
     canActivate:[AuthGaurdService,AdminAuthGaurdService]
   },
   {
-    path:'*',
+    path:'**',
     redirectTo:'',
     component:ProductsComponent
   }
@@ -131,7 +130,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     BsNavbarComponent,
-    HomeComponent,
     ProductsComponent,
     ShoppingCartComponent,
     CheckOutComponent,

@@ -3,4 +3,5 @@ export interface Shipping{
     addressLine1: string;
     addressLine2: string;
     city: string;
+    mobile:number;
 }

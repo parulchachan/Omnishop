@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { element } from 'protractor';
+import { Injectable, ViewChild } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import * as firebase from 'firebase';
 import { Product } from './models/product';
 
 
-
+ 
 @Injectable({
   providedIn: 'root'
 })
@@ -29,8 +30,23 @@ export class ProductService {
     return this.db.object('/products/'+ productId).update(product);
   }
 
+  getStock(productId):number{
+   let ref= this.db.database.ref('/products/');
+   var result:number;
+   ref.on('value', function getData(data){
+     var products=data.val();
+      result= products[productId].stock;
+      return result;
+   })
+   return result
+  }
+
   delete(productId){
     return this.db.object('/products/'+ productId).remove();
+  }
+
+  updateStock(productId,data){
+    this.db.object('/products/'+ productId + '/stock').set(data);
   }
 
   uploadPhoto(file,metaData){
